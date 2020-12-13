@@ -1,15 +1,23 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <p>App</p>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  setup() {
+
+    // Extract this into some kind of global function using the composition API concept
+    async function fetchBrandsApi(url = '') {
+      const response = await fetch(url)
+      return response.json()
+    }
+
+    fetchBrandsApi('http://localhost:8000/brands')
+      .then(data => {
+        console.log(data)
+      })
   }
 }
 </script>
