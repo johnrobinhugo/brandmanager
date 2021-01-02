@@ -1,24 +1,21 @@
 <template>
-  <p>App</p>
+  <div id="app">
+    <p>{{ brands}}</p>
+  </div>
 </template>
 
 <script>
+import brandsList from '@/composables/brandsList'
 
 export default {
   name: 'App',
   setup() {
+    const brands = brandsList()
 
-    // Extract this into some kind of global function using the composition API concept
-    // async function fetchBrandsApi(url = '') {
-    //   const response = await fetch(url)
-    //   return response.json()
-    // }
-
-    // fetchBrandsApi('http://localhost:8000/brands')
-    //   .then(data => {
-    //     console.log(data)
-    //   })
-  }
+    return {
+      brands
+    }
+  },
 }
 </script>
 
