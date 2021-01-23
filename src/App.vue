@@ -4,46 +4,40 @@
       <div class="sidebar">
         <p class="project-title">Brandmanager</p>
         <div class="menu">
-          <a class="button">All brands</a>
-          <a class="button">Add new</a>
+          <div class="menu__item">
+            <router-link :to="{name: 'brands'}" class="menu__item__link">All brands</router-link>
+          </div>
+          <div class="menu__item">
+            <router-link :to="{name: 'add-new'}" class="menu__item__link">Add new</router-link>
+          </div>
         </div>
       </div>
       <div class="main-content">
-        <div class="brand-list">
-          <div v-for="(item, index) in brands" :key="index" class="brand-list__item">
-            {{ item.name }}
-          </div>
-        </div>
+        <router-view></router-view>
       </div>
     </main>
   </div>
 </template>
 
 <script>
-import brandsList from '@/composables/brandsList'
+import router from '@/router'
 
 export default {
   name: 'App',
-  setup() {
-    const { brands } = brandsList()
-
-    return {
-      brands
-    }
-  }
+  router
 }
 </script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
   @import 'assets/styles/buttons.css';
 
   html {
-    --base-font: 'Work Sans', sans-serif;
-    --color-blue: #013850;
-    --color-yellow: #E9F100;
+    --base-font: 'Open Sans', sans-serif;
+    --color-grey: #F1F1F1;
     --color-black: #080808;
     font-family: var(--base-font);
+    background-color: var(--color-grey);
   }
 
   body {
@@ -55,10 +49,11 @@ export default {
     top: 0;
     left: 0;
     bottom: 0;
-    background: var(--color-blue);
+    background: white;
     padding: 50px 30px;
-    width: 300px;
+    width: 250px;
     box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
 
   .main-content {
@@ -66,8 +61,11 @@ export default {
   }
 
   .project-title {
-    font-size: 25px;
+    font-size: 22px;
     font-weight: 700;
-    color: white;
+  }
+
+  .menu__item {
+    margin-top: 15px;
   }
 </style>
